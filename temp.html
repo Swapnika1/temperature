@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>Temperature convertor</title>
+<body>
+<h1>Convertor</h1>
+<br>
+<div>
+Temperature <input type= "number" id="inputtemperature" placeholder="temperature">
+<div>
+  <select id="converterType"> 
+        <option value="F">fahrenheit</option>
+        <option value="C">Celsius</option>
+    </select>
+  <br/><br/>
+  Converted value: <span id="outputvalue"></span><br/><br/>
+
+  <button id="btnConverter" style="width:50px;background-color:lightblue;color:#FFF;border:1px soid blue;">Convert</button>
+  
+<script>
+
+var tempElm = document.getElementById("inputtemperature");
+var convElm = document.getElementById("converterType");
+var btn = document.getElementById("btnConverter");
+
+btn.addEventListener('click', function() {
+    var temp = tempElm.value;
+    var type = convElm.value;
+    var finalVal = converter(temp, type);
+
+    document.getElementById('outputvalue').innerHTML = temp + ((type === 'F')? 'C':'F') + ' = ' + finalVal + type;
+
+});
+
+
+// if(document.getElementById("temp").selectedIndex == 0)
+// {
+//   function cToF()
+//   {
+//     var Celsius=document.getElementById("inputtemperature").value;
+//     var cToFahr = Celsius *(9 / 5) + 32;
+//     document.getElementById("outputvalue").innerHTML=cToFahr;
+//   }
+// }
+// else
+// {
+//    function fToC() 
+//    {
+//     var Fahrenheit=document.getElementById("inputtemperaature").value;
+//     var fToCel = (fTemp - 32) * 5 / 9;
+//     document.getElementById("outputvalue").innerHTML=fToCel ;
+//    } 
+// }
+
+function converter(temp, converterType) {
+    var finalValue;
+    if (isNaN(temp)) {
+        return "NOT_A_NUMBER";
+    }
+    if (converterType == 'C') {
+        finalValue = (temp - 32) * 5 / 9;
+    } else if (converterType == 'F') {
+        finalValue = temp *(9 / 5) + 32;
+    } else {
+        return "NO_CONVERTER_TYPE";
+    }
+
+    return finalValue;
+}
+</script>
+</body>
+</html>
+
+
